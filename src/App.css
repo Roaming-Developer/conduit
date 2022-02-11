@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Titillium+Web:wght@400;700&display=swap");
+
+:root {
+  --primary: #f50029;
+  --primary-light: #f500291e;
+  --white: #ffffff;
+  --primary-dark: #181818;
+  --primary-dimmed: #949494;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* **Fonts to be used** */
+/* font-family: 'Titillium Web', sans-serif; */
+/* font-family: 'Source Sans Pro', sans-serif; */
+
+::selection {
+  background-color: #00000040;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navigation {
+  height: 40px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.5rem !important;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--primary);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-item {
+  margin-left: 0.5rem;
+  text-decoration: none;
+  color: var(--primary-dimmed);
+  padding: 0.2rem;
+}
+
+.nav-item:hover {
+  background-color: var(--primary-light);
+  box-shadow: 0px 2px var(--primary);
+}
+
+.main-hero {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1rem 0rem;
+  box-shadow: inset 0 8px 8px -8px rgb(0 0 0 / 30%),
+    inset 0 -8px 8px -8px rgb(0 0 0 / 30%);
+}
+
+.main-hero h1 {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+}
+
+.main-hero p {
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+@media (min-width: 544px) {
+  .container {
+    max-width: 576px;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
   }
+
+  .col-md-1 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+  }
+
+  .col-md-2 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+  .col-md-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-md-3 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 940px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }

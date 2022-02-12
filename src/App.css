@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Titillium+Web:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400&@200;700&family=Titillium+Web:wght@400;700&display=swap");
 
 :root {
   --primary: #f50029;
@@ -6,6 +6,7 @@
   --white: #ffffff;
   --primary-dark: #181818;
   --primary-dimmed: #949494;
+  --secondary-dimmed: #f3f3f3;
 }
 
 * {
@@ -13,6 +14,14 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: var(--primary);
 }
 
 /* **Fonts to be used** */
@@ -24,7 +33,7 @@
 }
 
 .navigation {
-  height: 40px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +45,10 @@
   text-decoration: none;
   font-weight: 600;
   color: var(--primary);
+}
+
+.nav-links ul {
+  margin-bottom: 0rem;
 }
 
 .nav-item {
@@ -70,6 +83,265 @@
   font-size: 1.5rem;
   padding-bottom: 1rem;
 }
+
+.feed-link {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.feed-header {
+  display: inline-block;
+
+  border-bottom: 2px solid var(--primary);
+  display: inline;
+}
+
+.dimmed {
+  /* display: inline-block; */
+  border-bottom: 2px solid var(--primary-dimmed);
+  color: var(--primary-dimmed);
+}
+
+.badge {
+  background-color: var(--primary-dimmed);
+  font-weight: 200;
+}
+
+.badge:hover {
+  background-color: var(--primary-dark);
+}
+
+.articles {
+  min-height: calc(100vh - 283px);
+}
+
+.article-meta {
+  border-top: 1px solid var(--primary-dimmed);
+  margin-top: 0.4rem;
+  padding: 1rem 0rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.article-meta-img {
+  border-radius: 50%;
+  /* display: inline; */
+  height: 40px;
+  width: 40px;
+}
+
+.heart {
+  position: absolute;
+  right: 0;
+}
+
+.heart-badge {
+  background-color: var(--primary) !important;
+}
+
+.profile-details {
+  /* display: inline-block; */
+  padding-left: 0.5rem;
+}
+
+.profile-name {
+  margin-bottom: 0;
+  color: var(--primary) !important;
+}
+
+.profile-date {
+  color: var(--primary-dimmed);
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.article-heading {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--primary-dark);
+}
+
+.article-body-limited {
+  color: var(--primary-dimmed);
+}
+
+.article-more-option {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-more-option .badge {
+  font-weight: 200;
+  color: var(--primary-dimmed);
+  background-color: transparent;
+  border: 1px solid var(--primary-dimmed);
+}
+.badge {
+  cursor: pointer;
+}
+
+.badge-bg-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* .login-row { */
+/* } */
+
+.login,
+.register {
+  min-height: calc(100vh - 108px);
+  /* width: 100%; */
+}
+
+.height-inherit {
+  height: 100%;
+}
+
+.login-row,
+.register-row {
+  min-height: calc(100vh - 108px);
+}
+
+.login-bg,
+.register-bg {
+  min-height: 50vh;
+  background-image: url(./assets/login-bg.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.login-bg {
+  background-image: url(./assets/login-bg.png);
+}
+
+.register-bg {
+  background-image: url(./assets/register-bg.png);
+}
+
+.login-details,
+.register-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.login-details h4,
+.register-details h4 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.login-details hr {
+  background-color: var(--primary);
+}
+
+.login-details button,
+.register-details button {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 30px;
+}
+.login-details button:hover,
+.register-details button:hover {
+  background-color: #f50029c7;
+}
+
+.login-details form,
+.register-details form {
+  width: 90%;
+}
+
+footer {
+  background-color: var(--secondary-dimmed);
+}
+
+.logo-footer {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+.logo-footer span {
+  font-weight: 200;
+}
+
+.thinkster {
+  color: var(--primary);
+}
+
+/* Loader Start*/
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 3rem 0rem;
+}
+
+.lds-ellipsis {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* Loader End */
 
 @media (min-width: 544px) {
   .container {

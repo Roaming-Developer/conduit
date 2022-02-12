@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 let Header = () => {
   return (
@@ -13,15 +13,42 @@ let Header = () => {
           </div>
           <div className="nav-links">
             <ul>
-              <Link className="nav-item" to={"#"}>
+              <NavLink
+                style={({ isActive }) => {
+                  return {
+                    color: isActive ? "#f50029" : "",
+                    boxShadow: isActive ? "0px 2px #f50029" : "",
+                  };
+                }}
+                className="nav-item"
+                to={"./"}
+              >
                 Home
-              </Link>
-              <Link className="nav-item" to={"#"}>
+              </NavLink>
+              <NavLink
+                style={({ isActive }) => {
+                  return {
+                    color: isActive ? "#f50029" : "",
+                    boxShadow: isActive ? "0px 2px #f50029" : "",
+                  };
+                }}
+                className="nav-item"
+                to={"/login"}
+              >
                 Sign in
-              </Link>
-              <Link className="nav-item" to={"#"}>
+              </NavLink>
+              <NavLink
+                style={({ isActive }) => {
+                  return {
+                    color: isActive ? "#f50029" : "",
+                    boxShadow: isActive ? "0px 2px #f50029" : "",
+                  };
+                }}
+                className="nav-item"
+                to={"./register"}
+              >
                 Sign up
-              </Link>
+              </NavLink>
             </ul>
           </div>
         </div>

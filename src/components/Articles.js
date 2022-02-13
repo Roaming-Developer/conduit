@@ -5,22 +5,26 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 // import PopularTags from "./PopularTags";
 // const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
+// const baseURL = "https://conduit.productionready.io/api";
 
 let Articles = () => {
-  const [baseURL] = useState("https://conduit.productionready.io/api");
+  const [baseURL] = useState("https://mighty-oasis-08080.herokuapp.com/api/");
+  const [articleLimit, setArticleLimit] = useState(10);
+  const [articleURL, setArticleURL] = useState(
+    baseURL + "/articles?limit=" + articleLimit
+  );
   const [currentTag, setCurrentTag] = useState("global");
-
-  const [articleURL, setArticleURL] = useState(baseURL + "/articles");
 
   let PopularTags = () => {
     const [popularTags, setPopularTags] = useState();
     const [limitTag, SetLimitTag] = useState(20);
+
     useEffect(() => {
       getTags();
     }, []);
 
     let getTags = () => {
-      fetch(baseURL + "/tags")
+      return fetch(baseURL + "/tags")
         .then((res) => {
           return res.json();
         })
@@ -28,14 +32,14 @@ let Articles = () => {
           setPopularTags(data);
         });
     };
-
+    // getTags();
     let tagLimit = () => {
       SetLimitTag(popularTags.tags.length);
     };
 
     let filterTagArticles = (tag) => {
       setCurrentTag(tag);
-      setArticleURL(baseURL + "/articles?tag=" + tag);
+      setArticleURL(articleURL + "&tag=" + tag);
     };
 
     let Tag = () => {
@@ -88,6 +92,13 @@ let Articles = () => {
     );
   };
 
+  let moreArticles = () => {
+    setArticleLimit(articleLimit + 10);
+    // console.log(articleLimit);
+    // console.log(articleURL);
+    setArticleURL(baseURL + "/articles?limit=" + articleLimit);
+  };
+
   return (
     <section className="articles py-4">
       <div className="container">
@@ -97,6 +108,9 @@ let Articles = () => {
               <TagHeader currentTag={currentTag} />
             </Link>
             <ArticleCards articleURL={articleURL} />
+            <div className="show-more">
+              <button onClick={() => moreArticles()}>Show More</button>
+            </div>
           </div>
           <div className="col-sm-3 tags-div">
             <h6>Popular Tags</h6>

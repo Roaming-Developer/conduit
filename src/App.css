@@ -4,7 +4,7 @@
   --primary: #f50029;
   --primary-light: #f500291e;
   --white: #ffffff;
-  --primary-dark: #181818;
+  --primary-dark: #333333;
   --primary-dimmed: #949494;
   --secondary-dimmed: #f3f3f3;
 }
@@ -140,6 +140,19 @@ a:hover {
   background-color: var(--primary) !important;
 }
 
+.show-more {
+  width: 100%;
+  text-align: center;
+}
+
+.show-more button {
+  border-radius: 50px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+}
+
 .profile-details {
   /* display: inline-block; */
   padding-left: 0.5rem;
@@ -255,6 +268,38 @@ a:hover {
 .login-details form,
 .register-details form {
   width: 90%;
+}
+
+.article-hero {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  padding: 3rem 0rem;
+}
+
+.articleBody {
+  min-height: calc(100vh - 283px);
+  padding: 2rem 0rem;
+}
+
+.article-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.article-content {
+  border-bottom: 2px solid var(--secondary-dimmed);
+}
+
+.comment-section {
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
+
+.article-comments {
+  max-width: 730px;
 }
 
 footer {

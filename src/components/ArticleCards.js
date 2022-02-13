@@ -8,7 +8,7 @@ let UserTag = (props) => {
 };
 
 let ArticleCard = ({ element }) => {
-  console.log(element.favoritesCount);
+  // console.log(element.favoritesCount);
   return (
     <div className="articles-div" key={element.author.username}>
       <div className="article-meta">
@@ -36,19 +36,19 @@ let ArticleCard = ({ element }) => {
             >
               <g
                 fill="none"
-                fill-rule="nonzero"
+                fillRule="nonzero"
                 stroke="none"
-                stroke-width="1"
-                stroke-linecap="butt"
-                stroke-linejoin="miter"
-                stroke-miterlimit="10"
-                stroke-dasharray=""
-                stroke-dashoffset="0"
-                font-family="none"
-                font-weight="none"
-                font-size="none"
-                text-anchor="none"
-                style={{ "mix-blend-mode": "normal" }}
+                strokeWidth="1"
+                strokeLinecap="butt"
+                strokeLinejoin="miter"
+                strokeMiterlimit="10"
+                strokeDasharray=""
+                strokeDashoffset="0"
+                fontFamily="none"
+                fontWeight="none"
+                fontSize="none"
+                textAnchor="none"
+                style={{ mixBlendMode: "normal" }}
               >
                 <path d="M0,226v-226h226v226z" fill="none"></path>
                 <g fill="#ffffff">
@@ -65,7 +65,7 @@ let ArticleCard = ({ element }) => {
         {element.title.slice(0, 100) + " . . ."}
       </p>
       <div className="article-more-option pb-3">
-        <Link className="profile-date" to={"#"}>
+        <Link className="profile-date" to={"/article/" + element.slug}>
           Read More
         </Link>
         <div>

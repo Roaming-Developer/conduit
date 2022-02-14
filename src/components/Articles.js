@@ -7,7 +7,7 @@ import Loader from "./Loader";
 // const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
 // const baseURL = "https://conduit.productionready.io/api";
 
-let Articles = () => {
+let Articles = (props) => {
   const [baseURL] = useState("https://mighty-oasis-08080.herokuapp.com/api/");
   const [articleLimit, setArticleLimit] = useState(10);
   const [articleURL, setArticleURL] = useState(

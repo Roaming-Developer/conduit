@@ -37,6 +37,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo {
@@ -94,6 +95,52 @@ a:hover {
 
   border-bottom: 2px solid var(--primary);
   display: inline;
+}
+
+.header-username {
+  display: inline-block;
+}
+
+.header-username img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.btn-logout {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--primary);
+  border-radius: 25px;
+  background-color: var(--primary);
+  color: var(--white);
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  transition: 0.3s;
+  background-color: var(--white);
+  color: var(--primary);
+  position: relative;
+}
+
+.article-add {
+  position: relative;
+}
+
+.add-article-btn {
+  position: fixed;
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  padding-top: 0.1rem;
+  padding-left: 0.1rem;
+  font-size: 1.8rem;
+  top: 75vh;
+  right: 10px;
 }
 
 .dimmed {
@@ -302,8 +349,14 @@ a:hover {
   max-width: 730px;
 }
 
+#erros {
+  color: var(--primary) !important;
+}
+
 footer {
   background-color: var(--secondary-dimmed);
+  /* position: absolute;
+   */
 }
 
 .logo-footer {
@@ -387,6 +440,67 @@ footer {
 }
 
 /* Loader End */
+
+/* Simple Loader */
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #ffffff;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+/* Simple Loader End */
 
 @media (min-width: 544px) {
   .container {

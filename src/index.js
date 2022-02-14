@@ -7,6 +7,7 @@ import { Login, SignUp } from "./components/LoginAndSignUp";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Article from "./components/Article";
+import Dashboard from "./components/Dashboard";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path="/article">
           <Route path=":slug" element={<Article />}></Route>
         </Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

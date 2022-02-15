@@ -1,102 +1,113 @@
-import "../App.css";
-import { Link } from "react-router-dom";
-import ArticleCards from "./ArticleCards";
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
-// import PopularTags from "./PopularTags";
-// const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
-// const baseURL = "https://conduit.productionready.io/api";
+import ArticleCards from "./ArticleCards";
+const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
 
 let Articles = (props) => {
-  const [baseURL] = useState("https://mighty-oasis-08080.herokuapp.com/api/");
-  const [articleLimit, setArticleLimit] = useState(10);
-  const [articleURL, setArticleURL] = useState(
-    baseURL + "/articles?limit=" + articleLimit
+  //   console.log(props);
+  let loggedUser = props.feed ? "true" : false;
+  const [currentTag, setCurrentTag] = useState(
+    loggedUser ? "feed-1598" : "global"
   );
-  const [currentTag, setCurrentTag] = useState("global");
+  const [popularTags, setPopularTags] = useState();
+  const [feed, setFeed] = useState(false);
 
-  let PopularTags = () => {
-    const [popularTags, setPopularTags] = useState();
-    const [limitTag, SetLimitTag] = useState(20);
+  const [articleURL, setArticleURL] = useState("");
 
-    useEffect(() => {
-      getTags();
-    }, []);
+  useEffect(() => {
+    getTags(baseURL + "tags");
+  }, []);
 
-    let getTags = () => {
-      return fetch(baseURL + "/tags")
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setPopularTags(data);
-        });
-    };
-    // getTags();
-    let tagLimit = () => {
-      SetLimitTag(popularTags.tags.length);
+  let ArticleHead = () => {
+    let dimmedClass = "feed-header py-2 px-3 dimmed";
+    let activeClass = "feed-header py-2 px-3";
+
+    let tagReset = (resetTag) => {
+      setCurrentTag(resetTag);
     };
 
-    let filterTagArticles = (tag) => {
-      setCurrentTag(tag);
-      setArticleURL(articleURL + "&tag=" + tag);
-    };
-
-    let Tag = () => {
-      return (
-        <>
-          <>
-            {popularTags.tags.map((tag, ind) =>
-              ind < limitTag ? (
-                <span
-                  key={Math.random() + tag}
-                  className="badge rounded-pill mx-1"
-                  onClick={() => filterTagArticles(tag)}
-                >
-                  {tag}
-                </span>
-              ) : null
-            )}
-          </>
-          <br />
-          <span
-            className="badge rounded-pill mx-1 badge-bg-primary"
-            onClick={() => tagLimit()}
-          >
-            {"Show All"}
-          </span>
-        </>
-      );
-    };
-
-    return popularTags ? <Tag /> : <Loader />;
-  };
-
-  let resetTag = () => {
-    setCurrentTag("global");
-    setArticleURL(baseURL + "/articles");
-  };
-
-  let TagHeader = () => {
-    if (currentTag === "global") {
-      return <h6 className="feed-header py-2 pe-1">Global Feed</h6>;
-    }
     return (
-      <>
-        {/* <h6 className="feed-header-not py-2 pe-1">Global Feed</h6> */}
-        <h6 className="feed-header py-2 pe-1 dimmed" onClick={() => resetTag()}>
-          Global Feed
-        </h6>
-        <h6 className="feed-header py-2 pe-1 ps-4">{"#" + currentTag}</h6>
-      </>
+      <div
+        className="py-1"
+        style={{ borderBottom: "2px solid var(--secondary-dimmed)" }}
+      >
+        {loggedUser ? (
+          <h6
+            onClick={() => tagReset("feed-1598")}
+            className={currentTag === "feed-1598" ? activeClass : dimmedClass}
+          >
+            Feed
+          </h6>
+        ) : (
+          ""
+        )}
+        {currentTag === "global" ? (
+          <h6
+            className={"feed-header py-2 px-3"}
+            onClick={() => tagReset("global")}
+          >
+            Global Feed
+          </h6>
+        ) : (
+          <h6
+            className={"feed-header py-2 px-3 dimmed"}
+            onClick={() => tagReset("global")}
+          >
+            Global Feed
+          </h6>
+        )}
+        {currentTag !== "global" && currentTag !== "feed-1598" ? (
+          <h6 className="feed-header py-2 px-3">{"#" + currentTag}</h6>
+        ) : (
+          ""
+        )}
+      </div>
     );
   };
 
-  let moreArticles = () => {
-    setArticleLimit(articleLimit + 10);
-    // console.log(articleLimit);
-    // console.log(articleURL);
-    setArticleURL(baseURL + "/articles?limit=" + articleLimit);
+  let getTags = (tagURL) => {
+    fetch(tagURL)
+      .then((res) => res.json())
+      .then((tags) => {
+        setPopularTags(tags);
+      });
+  };
+
+  let PopularTags = () => {
+    useEffect(() => {
+      changeCurrentTag(currentTag);
+    });
+    let changeCurrentTag = (tag) => {
+      setCurrentTag(tag);
+      if (currentTag === "global") {
+        setFeed(false);
+        setArticleURL("https://mighty-oasis-08080.herokuapp.com/api/articles");
+      } else if (currentTag === "feed-1598") {
+        setFeed(true);
+        setArticleURL(
+          "https://mighty-oasis-08080.herokuapp.com/api/articles/feed"
+        );
+      } else {
+        setFeed(false);
+        setArticleURL(
+          "https://mighty-oasis-08080.herokuapp.com/api/articles?tag=" +
+            currentTag
+        );
+      }
+    };
+
+    if (popularTags) {
+      return popularTags.tags.map((tag) => (
+        <span
+          key={Math.random() + tag}
+          className="badge rounded-pill me-1"
+          onClick={() => changeCurrentTag(tag)}
+        >
+          {tag}
+        </span>
+      ));
+    }
+    return null;
   };
 
   return (
@@ -104,17 +115,17 @@ let Articles = (props) => {
       <div className="container">
         <div className="row">
           <div className="col-sm-9">
-            <Link className="feed-link" to="/">
-              <TagHeader currentTag={currentTag} />
-            </Link>
-            <ArticleCards articleURL={articleURL} />
-            <div className="show-more">
-              <button onClick={() => moreArticles()}>Show More</button>
-            </div>
+            <ArticleHead />
+            <ArticleCards
+              articleURL={articleURL}
+              feed={props.feed ? props.feed : feed}
+            />
           </div>
           <div className="col-sm-3 tags-div">
             <h6>Popular Tags</h6>
-            <PopularTags />
+            <div>
+              {popularTags ? <PopularTags /> : <Loader isSmall={true} />}
+            </div>
           </div>
         </div>
       </div>

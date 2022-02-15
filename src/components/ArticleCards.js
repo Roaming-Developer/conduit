@@ -8,7 +8,6 @@ let UserTag = (props) => {
 };
 
 let ArticleCard = ({ element }) => {
-  // console.log(element.favoritesCount);
   return (
     <div className="articles-div" key={element.author.username}>
       <div className="article-meta">
@@ -84,28 +83,49 @@ let ArticleCard = ({ element }) => {
 };
 
 let ArticleCards = (props) => {
-  // console.log(props);
-  const [articleData, setArticleData] = useState([]);
+  //   console.log(props.articleURL);
+  //   console.log(props);
+  const [articleData, setArticleData] = useState({});
+
+  let authParams = props.feed
+    ? {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("conduit-user-token"),
+        },
+      }
+    : {};
+
+  //   console.log(localStorage.getItem("conduit-user-token"));
 
   useEffect(() => {
-    getArticles(props.articleURL);
+    fetchArticleData();
+    // eslint-disable-next-line
   }, [props.articleURL]);
 
-  let getArticles = (articleURL) => {
-    setArticleData([]);
-    fetch(articleURL)
-      .then((res) => {
-        return res.json();
-      })
+  let fetchArticleData = () => {
+    setArticleData({});
+    fetch(props.articleURL, authParams)
+      .then((res) => res.json())
       .then((data) => {
-        setArticleData(data.articles);
+        setArticleData(data);
       });
   };
 
+  let FeedNothing = () =>
+    props.feed &&
+    props.articleURL ===
+      "https://mighty-oasis-08080.herokuapp.com/api/articles/feed" ? (
+      <p className="mt-5 text-center">Nothing to show</p>
+    ) : (
+      <Loader />
+    );
+
   return (
     <>
-      {articleData.length > 0 ? (
-        articleData.map((element) => {
+      {articleData.articlesCount > 0 ? (
+        articleData.articles.map((element) => {
           return (
             <ArticleCard
               key={Math.random() + "_" + element.author.username}
@@ -114,7 +134,7 @@ let ArticleCards = (props) => {
           );
         })
       ) : (
-        <Loader />
+        <FeedNothing />
       )}
     </>
   );

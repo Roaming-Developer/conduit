@@ -2,10 +2,10 @@ import "../App.css";
 import Articles from "./Articles";
 import Hero from "./Hero";
 
-function App() {
+function App(props) {
   return (
     <>
-      <Hero />
+      {props.isUserLogged ? "" : <Hero />}
       <Articles />
     </>
   );

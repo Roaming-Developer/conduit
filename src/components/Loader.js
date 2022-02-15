@@ -1,5 +1,5 @@
-let Loader = () => (
-  <div className="loader">
+let Loader = (props) => (
+  <div className={props.isSmall ? "" : "loader"}>
     <div className="lds-ellipsis">
       <div></div>
       <div></div>

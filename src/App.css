@@ -37,6 +37,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+}
+
+nav {
+  border-bottom: 1px solid var(--secondary-dimmed);
 }
 
 .logo {
@@ -86,20 +91,76 @@ a:hover {
 
 .feed-link {
   text-decoration: none;
-  color: var(--primary);
+  color: var(--primary) !important;
+}
+
+.cl-rd {
+  color: var(--primary) !important;
 }
 
 .feed-header {
   display: inline-block;
-
-  border-bottom: 2px solid var(--primary);
+  /* border-bottom: 2px solid var(--primary); */
+  color: var(--primary);
+  box-shadow: inset 0px -2px var(--primary);
   display: inline;
+  cursor: pointer;
+}
+
+.header-username {
+  display: inline-block;
+}
+
+.header-username img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.article-add {
+  position: relative;
+}
+
+.add-article-btn {
+  position: fixed;
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  padding-top: 0.1rem;
+  padding-left: 0.1rem;
+  font-size: 1.8rem;
+  top: 75vh;
+  right: 10px;
+}
+
+.btn {
+  border-radius: 25px;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  font-weight: 600;
+  background-color: transparent !important;
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .dimmed {
-  /* display: inline-block; */
-  border-bottom: 2px solid var(--primary-dimmed);
+  box-shadow: inset 0px -1px var(--secondary-dimmed);
   color: var(--primary-dimmed);
+}
+
+.dimmed:hover {
+  color: var(--primary-dark);
+  box-shadow: inset 0px -2px var(--primary-dark);
 }
 
 .badge {
@@ -115,8 +176,10 @@ a:hover {
   min-height: calc(100vh - 283px);
 }
 
+.articles-div {
+  border-bottom: 2px solid var(--secondary-dimmed);
+}
 .article-meta {
-  border-top: 1px solid var(--primary-dimmed);
   margin-top: 0.4rem;
   padding: 1rem 0rem;
   display: flex;
@@ -302,8 +365,19 @@ a:hover {
   max-width: 730px;
 }
 
+#erros {
+  color: var(--primary) !important;
+}
+
+.settings {
+  border-top: 2px solid var(--secondary-dimmed);
+  min-height: 90vh;
+}
+
 footer {
   background-color: var(--secondary-dimmed);
+  /* position: absolute;
+   */
 }
 
 .logo-footer {
@@ -388,71 +462,75 @@ footer {
 
 /* Loader End */
 
+/* Simple Loader */
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #ffffff;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+/* Simple Loader End */
+
 @media (min-width: 544px) {
-  .container {
-    max-width: 576px;
-  }
 }
+
 @media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-
-  .col-md-1 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 8.33333%;
-    max-width: 8.33333%;
-  }
-
-  .col-md-2 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 16.66667%;
-    max-width: 16.66667%;
-  }
-  .col-md-9 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 75%;
-    max-width: 75%;
-  }
-  .col-md-3 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
 }
+
 @media (min-width: 992px) {
-  .container {
-    max-width: 940px;
-  }
 }
+
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.container-fluid {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }

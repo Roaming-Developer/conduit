@@ -40,6 +40,10 @@ a:hover {
   position: relative;
 }
 
+nav {
+  border-bottom: 1px solid var(--secondary-dimmed);
+}
+
 .logo {
   font-family: "Titillium Web", sans-serif;
   font-size: 1.5rem !important;
@@ -87,14 +91,20 @@ a:hover {
 
 .feed-link {
   text-decoration: none;
-  color: var(--primary);
+  color: var(--primary) !important;
+}
+
+.cl-rd {
+  color: var(--primary) !important;
 }
 
 .feed-header {
   display: inline-block;
-
-  border-bottom: 2px solid var(--primary);
+  /* border-bottom: 2px solid var(--primary); */
+  color: var(--primary);
+  box-shadow: inset 0px -2px var(--primary);
   display: inline;
+  cursor: pointer;
 }
 
 .header-username {
@@ -105,22 +115,6 @@ a:hover {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-}
-
-.btn-logout {
-  padding: 0.1rem 0.5rem;
-  border: 1px solid var(--primary);
-  border-radius: 25px;
-  background-color: var(--primary);
-  color: var(--white);
-  transition: 0.3s;
-}
-
-.btn-logout:hover {
-  transition: 0.3s;
-  background-color: var(--white);
-  color: var(--primary);
-  position: relative;
 }
 
 .article-add {
@@ -143,10 +137,30 @@ a:hover {
   right: 10px;
 }
 
+.btn {
+  border-radius: 25px;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  font-weight: 600;
+  background-color: transparent !important;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
 .dimmed {
-  /* display: inline-block; */
-  border-bottom: 2px solid var(--primary-dimmed);
+  box-shadow: inset 0px -1px var(--secondary-dimmed);
   color: var(--primary-dimmed);
+}
+
+.dimmed:hover {
+  color: var(--primary-dark);
+  box-shadow: inset 0px -2px var(--primary-dark);
 }
 
 .badge {
@@ -162,8 +176,10 @@ a:hover {
   min-height: calc(100vh - 283px);
 }
 
+.articles-div {
+  border-bottom: 2px solid var(--secondary-dimmed);
+}
 .article-meta {
-  border-top: 1px solid var(--primary-dimmed);
   margin-top: 0.4rem;
   padding: 1rem 0rem;
   display: flex;
@@ -353,6 +369,11 @@ a:hover {
   color: var(--primary) !important;
 }
 
+.settings {
+  border-top: 2px solid var(--secondary-dimmed);
+  min-height: 90vh;
+}
+
 footer {
   background-color: var(--secondary-dimmed);
   /* position: absolute;
@@ -503,70 +524,13 @@ footer {
 /* Simple Loader End */
 
 @media (min-width: 544px) {
-  .container {
-    max-width: 576px;
-  }
 }
+
 @media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-
-  .col-md-1 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 8.33333%;
-    max-width: 8.33333%;
-  }
-
-  .col-md-2 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 16.66667%;
-    max-width: 16.66667%;
-  }
-  .col-md-9 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 75%;
-    max-width: 75%;
-  }
-  .col-md-3 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
 }
+
 @media (min-width: 992px) {
-  .container {
-    max-width: 940px;
-  }
 }
+
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.container-fluid {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }

@@ -24,6 +24,7 @@ let UserProfile = () => {
   useEffect(() => {
     fetchUser(baseURL);
     fetchArticle(articleURL);
+    // eslint-disable-next-line
   }, [articleURL, params.username]);
 
   let fetchUser = (baseURL) => {

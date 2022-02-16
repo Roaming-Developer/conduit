@@ -10,6 +10,7 @@ import Article from "./components/Article";
 import Dashboard from "./components/Dashboard";
 import UserSetting from "./components/UserSetting";
 import UserProfile from "./components/UserProfile";
+import AddArticle from "./components/AddArticle";
 
 let username = localStorage.getItem("conduit-user-username");
 // let token = localStorage.getItem("conduit-user-token");
@@ -25,6 +26,7 @@ ReactDOM.render(
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<SignUp />}></Route>
+        <Route path="/article/add" element={<AddArticle />}></Route>
         <Route path="/article">
           <Route path=":slug" element={<Article />}></Route>
         </Route>

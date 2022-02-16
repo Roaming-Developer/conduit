@@ -4,10 +4,10 @@ import { ArticleCard } from "./ArticleCards";
 const username = localStorage.getItem("conduit-user-username");
 const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
 
-if (!username) {
-  // eslint-disable-next-line
-  location.reload("/");
-}
+// if (username.length === 0) {
+// eslint-disable-next-line
+// location.reload("/");
+// }
 
 let UserProfile = () => {
   let params = useParams();

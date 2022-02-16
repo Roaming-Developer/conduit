@@ -361,10 +361,6 @@ nav {
   flex-direction: column;
 }
 
-.article-comments {
-  max-width: 730px;
-}
-
 #erros {
   color: var(--primary) !important;
 }
@@ -376,8 +372,9 @@ nav {
 
 footer {
   background-color: var(--secondary-dimmed);
-  /* position: absolute;
-   */
+  position: fixed;
+  bottom: 0;
+  display: none;
 }
 
 .logo-footer {

@@ -66,7 +66,13 @@ let Articles = (props) => {
   };
 
   let getTags = (tagURL) => {
-    fetch(tagURL)
+    fetch(tagURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((tags) => {
         setPopularTags(tags);

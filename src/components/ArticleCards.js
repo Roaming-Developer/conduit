@@ -8,6 +8,7 @@ let UserTag = (props) => {
 };
 
 let ArticleCard = ({ element }) => {
+  // console.log(element);
   return (
     <div className="articles-div" key={element.author.username}>
       <div className="article-meta">
@@ -15,7 +16,7 @@ let ArticleCard = ({ element }) => {
           <img className="article-meta-img" src={element.author.image} alt="" />
         </a>
         <div className="profile-details">
-          <Link to={"#"}>
+          <Link to={"/user/" + element.author.username}>
             <h6 className="profile-name">{element.author.username}</h6>
           </Link>
           <p className="profile-date">
@@ -141,3 +142,4 @@ let ArticleCards = (props) => {
 };
 
 export default ArticleCards;
+export { ArticleCard };

@@ -17,7 +17,13 @@ let Header = (props) => {
   }, []);
 
   let fetchprofile = (profileURL) => {
-    fetch(profileURL)
+    fetch(profileURL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((res) => res.json())
       .then(({ profile }) => {
         setUserProfile(profile);

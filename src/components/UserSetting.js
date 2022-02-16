@@ -44,7 +44,7 @@ let UserSetting = () => {
   let updateInfo = (e) => {
     e.preventDefault();
     fetch(baseUpdateURL, {
-      mathod: "PUT",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: authentication,

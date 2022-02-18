@@ -131,7 +131,7 @@ let UserProfile = () => {
             className=" rounded-circle"
             src={image}
             alt={username}
-            style={{ maxHeight: "100px" }}
+            style={{ height: "100px", width: "100px" }}
           />
           <h4 className="fw-bold pt-1">@{profileData.username}</h4>
           <div className="d-flex justify-content-end">

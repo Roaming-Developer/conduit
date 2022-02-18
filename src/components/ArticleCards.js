@@ -94,6 +94,7 @@ let ArticleCards = (props) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: localStorage.getItem("conduit-user-token"),
+          Accept: "application/json",
         },
       }
     : {};

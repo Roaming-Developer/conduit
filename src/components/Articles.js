@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 import ArticleCards from "./ArticleCards";
+// import { Pagination } from "react-bootstrap";
 const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/";
 
 let Articles = (props) => {
@@ -11,12 +12,40 @@ let Articles = (props) => {
   );
   const [popularTags, setPopularTags] = useState();
   const [feed, setFeed] = useState(false);
-
-  const [articleURL, setArticleURL] = useState("");
+  const [offset, setOffset] = useState(Number(0));
+  const [pageLimit, setPageLimit] = useState();
+  // const [limit, setlimit] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  // const [articleURL, setArticleURL] = useState(baseURL + "articles?limit=10");
+  const [articleURL, setArticleURL] = useState();
 
   useEffect(() => {
     getTags(baseURL + "tags");
-  }, []);
+    getArticleCount(articleURL);
+    // eslint-disable-next-line
+  }, [articleURL, pageLimit]);
+
+  let getArticleCount = (url) => {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("conduit-user-token"),
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(({ articlesCount }) => {
+        setPageLimit(
+          parseInt(
+            articlesCount % 20 === 0
+              ? articlesCount / 20
+              : articlesCount / 20 + 1
+          )
+        );
+      })
+      .catch((e) => console.log(e));
+  };
 
   let ArticleHead = () => {
     let dimmedClass = "feed-header py-2 px-3 dimmed";
@@ -71,6 +100,7 @@ let Articles = (props) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: localStorage.getItem("conduit-user-username"),
       },
     })
       .then((res) => res.json())
@@ -87,7 +117,12 @@ let Articles = (props) => {
       setCurrentTag(tag);
       if (currentTag === "global") {
         setFeed(false);
-        setArticleURL("https://mighty-oasis-08080.herokuapp.com/api/articles");
+        setArticleURL(
+          "https://mighty-oasis-08080.herokuapp.com/api/articles" +
+            "?offset=" +
+            offset
+        );
+        // console.log(articleURL);
       } else if (currentTag === "feed-1598") {
         setFeed(true);
         setArticleURL(
@@ -116,6 +151,48 @@ let Articles = (props) => {
     return null;
   };
 
+  let PageLimit = () => {
+    let pageClick = (offse) => {
+      setCurrentPage(offse + 1);
+      setOffset(parseInt(offse) * 20);
+    };
+
+    let temp = [];
+    for (let i = 0; i < pageLimit; i++) {
+      temp.push(i);
+    }
+
+    let classPage = "py-2 px-2 m-1 border border-danger rounded";
+    let classPageActive =
+      "py-2 px-2 m-1 border border-danger rounded text-light bg-danger";
+
+    return (
+      <>
+        {/* <span
+          onClick={() => pageClick(-1, "previous")}
+          className="p-1 m-3 ms-0 ps-0"
+        >
+          {"<<"}
+        </span> */}
+        {temp.map((el) => (
+          <span
+            key={el}
+            onClick={() => pageClick(el)}
+            className={el + 1 === currentPage ? classPageActive : classPage}
+          >
+            {el + 1}
+          </span>
+        ))}
+        {/* <span
+          onClick={() => pageClick(-1, "next")}
+          className="p-1 m-3 me-0 pe-0"
+        >
+          {">>"}
+        </span> */}
+      </>
+    );
+  };
+
   return (
     <section className="articles py-4">
       <div className="container">
@@ -125,7 +202,12 @@ let Articles = (props) => {
             <ArticleCards
               articleURL={articleURL}
               feed={props.feed ? props.feed : feed}
+              setOffset={setOffset}
             />
+            {/* Pagination */}
+            <div className="mt-3 text-center" style={{ cursor: "pointer" }}>
+              <PageLimit />
+            </div>
           </div>
           <div className="col-sm-3 tags-div">
             <h6>Popular Tags</h6>

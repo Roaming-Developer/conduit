@@ -198,7 +198,7 @@ let Article = () => {
     switch (operation) {
       case "edit":
         // eslint-disable-next-line
-        location.replace("/");
+        location.replace("/article/add/" + articleData.slug);
         break;
       case "delete":
         fetch(baseURL + slug, {

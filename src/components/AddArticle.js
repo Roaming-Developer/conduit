@@ -1,12 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+const baseURL = "https://mighty-oasis-08080.herokuapp.com/api/articles/";
 
 let AddArticle = () => {
+  let params = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
   const [tagList, setTagList] = useState("");
+  // const [articleData, setArticleData] = useState();
 
   let authentication = "";
+
+  useEffect(() => {
+    fetchArticleData(params.slug);
+    // console.log("ss");
+  }, [params.slug]);
+
+  let fetchArticleData = (slug) => {
+    if (slug) {
+      fetch(baseURL + slug, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then(({ article }) => {
+          // console.log(article);
+          setTitle(article.title);
+          setDescription(article.description);
+          setBody(article.body);
+          setTagList(article.tagList.join(" "));
+          // setArticleData(article);
+        });
+    }
+  };
 
   if (localStorage.getItem("conduit-user-token")) {
     authentication = localStorage.getItem("conduit-user-token");
@@ -15,8 +45,9 @@ let AddArticle = () => {
     location.replace("/");
   }
 
-  const baseUpdateURL = "https://mighty-oasis-08080.herokuapp.com/api/articles";
-  console.log(baseUpdateURL);
+  const baseUpdateURL =
+    "https://mighty-oasis-08080.herokuapp.com/api/articles/";
+  // console.log(baseUpdateURL);
 
   let handleInput = ({ target }) => {
     switch (target.name) {
@@ -40,7 +71,8 @@ let AddArticle = () => {
   let updateInfo = (e) => {
     e.preventDefault();
     let tagListArray = tagList.split(" ");
-    fetch(baseUpdateURL, {
+
+    let postParam = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,13 +86,34 @@ let AddArticle = () => {
           tagList: tagListArray,
         },
       }),
-    })
+    };
+
+    let putParam = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: authentication,
+      },
+      body: JSON.stringify({
+        article: {
+          title: title,
+          description: description,
+          body: body,
+          tagList: tagListArray,
+        },
+      }),
+    };
+
+    fetch(
+      params.slug ? baseUpdateURL + params.slug : baseUpdateURL,
+      params.slug ? putParam : postParam
+    )
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
+      .then(({ article }) => {
         //   eslint-disable-next-line
-        location.replace("/article");
+        location.replace("/article/" + article.slug);
       })
       .catch((e) => console.log(e));
   };

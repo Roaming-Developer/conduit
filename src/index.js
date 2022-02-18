@@ -26,7 +26,9 @@ ReactDOM.render(
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<SignUp />}></Route>
-        <Route path="/article/add" element={<AddArticle />}></Route>
+        <Route path="/article/add" element={<AddArticle />}>
+          <Route path=":slug" element={<AddArticle />}></Route>
+        </Route>
         <Route path="/article">
           <Route path=":slug" element={<Article />}></Route>
         </Route>
